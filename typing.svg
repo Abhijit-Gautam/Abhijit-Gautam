@@ -1,0 +1,138 @@
+<svg width="1200" height="160" viewBox="0 0 1200 160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Blue glow filter -->
+    <filter id="blue-glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Crimson glow filter -->
+    <filter id="crimson-glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Gold glow filter (shadow) -->
+    <filter id="gold-glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Mask for Line 1 (Hi, I'm...) -->
+    <mask id="mask-line-1">
+      <rect id="rect1" x="0" y="0" width="0" height="160" fill="white">
+        <!-- Type left to right -->
+        <animate id="type1"
+                 attributeName="width"
+                 from="0" to="1200"
+                 dur="2.5s"
+                 begin="0s;fade3.end+0.8s"
+                 fill="freeze"/>
+        <!-- Erase left to right -->
+        <animate id="erase1-width"
+                 attributeName="width"
+                 from="1200" to="0"
+                 dur="1.5s"
+                 begin="type1.end+0.3s"
+                 fill="freeze"/>
+        <animate id="erase1-x"
+                 attributeName="x"
+                 from="0" to="1200"
+                 dur="1.5s"
+                 begin="type1.end+0.3s"
+                 fill="freeze"/>
+      </rect>
+    </mask>
+
+    <!-- Mask for Line 2 (B.Tech...) -->
+    <mask id="mask-line-2">
+      <rect id="rect2" x="0" y="0" width="0" height="160" fill="white">
+        <!-- Type left to right -->
+        <animate id="type2"
+                 attributeName="width"
+                 from="0" to="1200"
+                 dur="2.5s"
+                 begin="erase1-width.end+0.3s"
+                 fill="freeze"/>
+        <!-- Erase right to left -->
+        <animate id="erase2"
+                 attributeName="width"
+                 from="1200" to="0"
+                 dur="1.5s"
+                 begin="type2.end+0.3s"
+                 fill="freeze"/>
+      </rect>
+    </mask>
+
+    <!-- Mask for Line 3 (Vahani...) -->
+    <mask id="mask-line-3">
+      <rect id="rect3" x="1200" y="0" width="1200" height="160" fill="white">
+        <!-- Type right to left -->
+        <animate id="type3"
+                 attributeName="x"
+                 from="1200" to="0"
+                 dur="2.5s"
+                 begin="erase2.end+0.3s"
+                 fill="freeze"/>
+      </rect>
+    </mask>
+  </defs>
+
+  <!-- Common text style -->
+  <style>
+    text {
+      font-family: "Fira Code", monospace;
+      font-size: 30px;
+      font-weight: 600;
+      dominant-baseline: middle;
+    }
+  </style>
+
+  <!-- LINE 1: Hi, I'm Abhijit Gautam! (blue glow) -->
+  <text x="40" y="40"
+        fill="#00BFFF"
+        filter="url(#blue-glow)"
+        mask="url(#mask-line-1)">
+    Hi, I'm Abhijit Gautam!
+  </text>
+
+  <!-- LINE 2: B.Tech Computer Science @ MSRIT (crimson glow) -->
+  <text x="40" y="80"
+        fill="#DC143C"
+        filter="url(#crimson-glow)"
+        mask="url(#mask-line-2)">
+    B.Tech Computer Science @ MSRIT
+  </text>
+
+  <!-- LINE 3 GROUP: Vahani line with gold shadow + blue text -->
+  <g id="line3-group" mask="url(#mask-line-3)" opacity="1">
+    <!-- Gold glowing shadow behind -->
+    <text x="40" y="120"
+          fill="#F6C978"
+          filter="url(#gold-glow)">
+      A Proud Vahani Scholar
+    </text>
+    <!-- Blue main text on top -->
+    <text x="40" y="120"
+          fill="#00BFFF">
+      A Proud Vahani Scholar
+    </text>
+
+    <!-- Fade away after typing -->
+    <animate id="fade3"
+             attributeName="opacity"
+             from="1" to="0"
+             begin="type3.end+1s"
+             dur="1.5s"
+             fill="remove"/>
+  </g>
+</svg>

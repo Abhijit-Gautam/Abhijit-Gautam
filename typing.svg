@@ -1,51 +1,101 @@
 <svg width="1200" height="80" viewBox="0 0 1200 80" xmlns="http://www.w3.org/2000/svg">
-
   <defs>
     <!-- GLOW FILTERS -->
     <filter id="blue-glow">
       <feGaussianBlur stdDeviation="3" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
 
     <filter id="crimson-glow">
       <feGaussianBlur stdDeviation="3" result="c"/>
-      <feMerge><feMergeNode in="c"/><feMergeNode in="SourceGraphic"/></feMerge>
+      <feMerge>
+        <feMergeNode in="c"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
 
     <filter id="gold-blue-glow">
       <feGaussianBlur stdDeviation="4" result="g"/>
-      <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
+      <feMerge>
+        <feMergeNode in="g"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
 
-    <!-- MASK 1 (L→R typing, L→R erase) -->
+    <!-- MASK 1: line 1 (L→R type, L→R erase) -->
     <mask id="mask1">
       <rect x="0" y="0" width="0" height="80" fill="white">
         <!-- type -->
-        <animate attributeName="width" from="0" to="1200" dur="2.2s" begin="0s;fade3.end+0.7s" fill="freeze"/>
+        <animate id="type1"
+                 attributeName="width"
+                 from="0" to="1200"
+                 dur="2.2s"
+                 begin="0s;erase3w.end+0.3s"
+                 fill="freeze" />
         <!-- erase left→right -->
-        <animate attributeName="width" from="1200" to="0" dur="1.4s" begin="type1.end+0.3s" fill="freeze" id="erase1"/>
-        <animate attributeName="x" from="0" to="1200" dur="1.4s" begin="type1.end+0.3s" fill="freeze"/>
+        <animate id="erase1w"
+                 attributeName="width"
+                 from="1200" to="0"
+                 dur="1.4s"
+                 begin="type1.end+0.3s"
+                 fill="freeze" />
+        <animate
+                 attributeName="x"
+                 from="0" to="1200"
+                 dur="1.4s"
+                 begin="type1.end+0.3s"
+                 fill="freeze" />
       </rect>
     </mask>
 
-    <!-- MASK 2 (L→R typing, R→L erase) -->
+    <!-- MASK 2: line 2 (L→R type, R→L erase) -->
     <mask id="mask2">
       <rect x="0" y="0" width="0" height="80" fill="white">
         <!-- type -->
-        <animate attributeName="width" from="0" to="1200" dur="2.2s" begin="erase1.end+0.3s" fill="freeze" id="type2"/>
+        <animate id="type2"
+                 attributeName="width"
+                 from="0" to="1200"
+                 dur="2.2s"
+                 begin="erase1w.end+0.3s"
+                 fill="freeze" />
         <!-- erase right→left -->
-        <animate attributeName="width" from="1200" to="0" dur="1.4s" begin="type2.end+0.3s" fill="freeze" id="erase2"/>
+        <animate id="erase2w"
+                 attributeName="width"
+                 from="1200" to="0"
+                 dur="1.4s"
+                 begin="type2.end+0.3s"
+                 fill="freeze" />
       </rect>
     </mask>
 
-    <!-- MASK 3 (R→L typing) -->
+    <!-- MASK 3: line 3 (R→L type, L→R erase) -->
     <mask id="mask3">
       <rect x="1200" y="0" width="1200" height="80" fill="white">
         <!-- type from right→left -->
-        <animate attributeName="x" from="1200" to="0" dur="2.2s" begin="erase2.end+0.3s" fill="freeze" id="type3"/>
+        <animate id="type3"
+                 attributeName="x"
+                 from="1200" to="0"
+                 dur="2.2s"
+                 begin="erase2w.end+0.3s"
+                 fill="freeze" />
+        <!-- erase left→right -->
+        <animate id="erase3w"
+                 attributeName="width"
+                 from="1200" to="0"
+                 dur="1.4s"
+                 begin="type3.end+0.3s"
+                 fill="freeze" />
+        <animate
+                 attributeName="x"
+                 from="0" to="1200"
+                 dur="1.4s"
+                 begin="type3.end+0.3s"
+                 fill="freeze" />
       </rect>
     </mask>
-
   </defs>
 
   <!-- TEXT STYLE -->
@@ -58,30 +108,34 @@
     }
   </style>
 
-  <!-- LINE 1 -->
-  <text x="40" y="50" fill="#00BFFF" filter="url(#blue-glow)" mask="url(#mask1)" opacity="1">
+  <!-- LINE 1: Hi, I'm Abhijit Gautam! (blue glow) -->
+  <text x="40" y="50"
+        fill="#00BFFF"
+        filter="url(#blue-glow)"
+        mask="url(#mask1)">
     Hi, I'm Abhijit Gautam!
-    <animate attributeName="opacity" from="1" to="0" begin="erase1.end" dur="0.1s" fill="freeze"/>
   </text>
 
-  <!-- LINE 2 -->
-  <text x="40" y="50" fill="#DC143C" filter="url(#crimson-glow)" mask="url(#mask2)" opacity="0">
+  <!-- LINE 2: B.Tech Computer Science @ MSRIT (crimson glow) -->
+  <text x="40" y="50"
+        fill="#DC143C"
+        filter="url(#crimson-glow)"
+        mask="url(#mask2)">
     B.Tech Computer Science @ MSRIT
-    <animate attributeName="opacity" from="0" to="1" begin="type2.begin" dur="0.1s" fill="freeze"/>
-    <animate attributeName="opacity" from="1" to="0" begin="erase2.end" dur="0.1s" fill="freeze"/>
   </text>
 
-  <!-- LINE 3 -->
-  <g opacity="0" mask="url(#mask3)">
+  <!-- LINE 3: A Proud Vahani Scholar (blue + gold glow) -->
+  <g mask="url(#mask3)">
     <!-- gold glow behind -->
-    <text x="40" y="50" fill="#F6C978" filter="url(#gold-blue-glow)">A Proud Vahani Scholar</text>
-    <!-- blue body text -->
-    <text x="40" y="50" fill="#00BFFF">A Proud Vahani Scholar</text>
-
-    <!-- fade in when typing starts -->
-    <animate attributeName="opacity" from="0" to="1" begin="type3.begin" dur="0.2s" fill="freeze"/>
-    <!-- fade away -->
-    <animate id="fade3" attributeName="opacity" from="1" to="0" begin="type3.end+1s" dur="1.4s" fill="remove"/>
+    <text x="40" y="50"
+          fill="#F6C978"
+          filter="url(#gold-blue-glow)">
+      A Proud Vahani Scholar
+    </text>
+    <!-- blue main text -->
+    <text x="40" y="50"
+          fill="#00BFFF">
+      A Proud Vahani Scholar
+    </text>
   </g>
-
 </svg>

@@ -1,138 +1,87 @@
-<svg width="1200" height="160" viewBox="0 0 1200 160" xmlns="http://www.w3.org/2000/svg">
+<svg width="1200" height="80" viewBox="0 0 1200 80" xmlns="http://www.w3.org/2000/svg">
+
   <defs>
-    <!-- Blue glow filter -->
+    <!-- GLOW FILTERS -->
     <filter id="blue-glow">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
 
-    <!-- Crimson glow filter -->
     <filter id="crimson-glow">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+      <feGaussianBlur stdDeviation="3" result="c"/>
+      <feMerge><feMergeNode in="c"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
 
-    <!-- Gold glow filter (shadow) -->
-    <filter id="gold-glow">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+    <filter id="gold-blue-glow">
+      <feGaussianBlur stdDeviation="4" result="g"/>
+      <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
 
-    <!-- Mask for Line 1 (Hi, I'm...) -->
-    <mask id="mask-line-1">
-      <rect id="rect1" x="0" y="0" width="0" height="160" fill="white">
-        <!-- Type left to right -->
-        <animate id="type1"
-                 attributeName="width"
-                 from="0" to="1200"
-                 dur="2.5s"
-                 begin="0s;fade3.end+0.8s"
-                 fill="freeze"/>
-        <!-- Erase left to right -->
-        <animate id="erase1-width"
-                 attributeName="width"
-                 from="1200" to="0"
-                 dur="1.5s"
-                 begin="type1.end+0.3s"
-                 fill="freeze"/>
-        <animate id="erase1-x"
-                 attributeName="x"
-                 from="0" to="1200"
-                 dur="1.5s"
-                 begin="type1.end+0.3s"
-                 fill="freeze"/>
+    <!-- MASK 1 (L→R typing, L→R erase) -->
+    <mask id="mask1">
+      <rect x="0" y="0" width="0" height="80" fill="white">
+        <!-- type -->
+        <animate attributeName="width" from="0" to="1200" dur="2.2s" begin="0s;fade3.end+0.7s" fill="freeze"/>
+        <!-- erase left→right -->
+        <animate attributeName="width" from="1200" to="0" dur="1.4s" begin="type1.end+0.3s" fill="freeze" id="erase1"/>
+        <animate attributeName="x" from="0" to="1200" dur="1.4s" begin="type1.end+0.3s" fill="freeze"/>
       </rect>
     </mask>
 
-    <!-- Mask for Line 2 (B.Tech...) -->
-    <mask id="mask-line-2">
-      <rect id="rect2" x="0" y="0" width="0" height="160" fill="white">
-        <!-- Type left to right -->
-        <animate id="type2"
-                 attributeName="width"
-                 from="0" to="1200"
-                 dur="2.5s"
-                 begin="erase1-width.end+0.3s"
-                 fill="freeze"/>
-        <!-- Erase right to left -->
-        <animate id="erase2"
-                 attributeName="width"
-                 from="1200" to="0"
-                 dur="1.5s"
-                 begin="type2.end+0.3s"
-                 fill="freeze"/>
+    <!-- MASK 2 (L→R typing, R→L erase) -->
+    <mask id="mask2">
+      <rect x="0" y="0" width="0" height="80" fill="white">
+        <!-- type -->
+        <animate attributeName="width" from="0" to="1200" dur="2.2s" begin="erase1.end+0.3s" fill="freeze" id="type2"/>
+        <!-- erase right→left -->
+        <animate attributeName="width" from="1200" to="0" dur="1.4s" begin="type2.end+0.3s" fill="freeze" id="erase2"/>
       </rect>
     </mask>
 
-    <!-- Mask for Line 3 (Vahani...) -->
-    <mask id="mask-line-3">
-      <rect id="rect3" x="1200" y="0" width="1200" height="160" fill="white">
-        <!-- Type right to left -->
-        <animate id="type3"
-                 attributeName="x"
-                 from="1200" to="0"
-                 dur="2.5s"
-                 begin="erase2.end+0.3s"
-                 fill="freeze"/>
+    <!-- MASK 3 (R→L typing) -->
+    <mask id="mask3">
+      <rect x="1200" y="0" width="1200" height="80" fill="white">
+        <!-- type from right→left -->
+        <animate attributeName="x" from="1200" to="0" dur="2.2s" begin="erase2.end+0.3s" fill="freeze" id="type3"/>
       </rect>
     </mask>
+
   </defs>
 
-  <!-- Common text style -->
+  <!-- TEXT STYLE -->
   <style>
     text {
       font-family: "Fira Code", monospace;
-      font-size: 30px;
+      font-size: 32px;
       font-weight: 600;
       dominant-baseline: middle;
     }
   </style>
 
-  <!-- LINE 1: Hi, I'm Abhijit Gautam! (blue glow) -->
-  <text x="40" y="40"
-        fill="#00BFFF"
-        filter="url(#blue-glow)"
-        mask="url(#mask-line-1)">
+  <!-- LINE 1 -->
+  <text x="40" y="50" fill="#00BFFF" filter="url(#blue-glow)" mask="url(#mask1)" opacity="1">
     Hi, I'm Abhijit Gautam!
+    <animate attributeName="opacity" from="1" to="0" begin="erase1.end" dur="0.1s" fill="freeze"/>
   </text>
 
-  <!-- LINE 2: B.Tech Computer Science @ MSRIT (crimson glow) -->
-  <text x="40" y="80"
-        fill="#DC143C"
-        filter="url(#crimson-glow)"
-        mask="url(#mask-line-2)">
+  <!-- LINE 2 -->
+  <text x="40" y="50" fill="#DC143C" filter="url(#crimson-glow)" mask="url(#mask2)" opacity="0">
     B.Tech Computer Science @ MSRIT
+    <animate attributeName="opacity" from="0" to="1" begin="type2.begin" dur="0.1s" fill="freeze"/>
+    <animate attributeName="opacity" from="1" to="0" begin="erase2.end" dur="0.1s" fill="freeze"/>
   </text>
 
-  <!-- LINE 3 GROUP: Vahani line with gold shadow + blue text -->
-  <g id="line3-group" mask="url(#mask-line-3)" opacity="1">
-    <!-- Gold glowing shadow behind -->
-    <text x="40" y="120"
-          fill="#F6C978"
-          filter="url(#gold-glow)">
-      A Proud Vahani Scholar
-    </text>
-    <!-- Blue main text on top -->
-    <text x="40" y="120"
-          fill="#00BFFF">
-      A Proud Vahani Scholar
-    </text>
+  <!-- LINE 3 -->
+  <g opacity="0" mask="url(#mask3)">
+    <!-- gold glow behind -->
+    <text x="40" y="50" fill="#F6C978" filter="url(#gold-blue-glow)">A Proud Vahani Scholar</text>
+    <!-- blue body text -->
+    <text x="40" y="50" fill="#00BFFF">A Proud Vahani Scholar</text>
 
-    <!-- Fade away after typing -->
-    <animate id="fade3"
-             attributeName="opacity"
-             from="1" to="0"
-             begin="type3.end+1s"
-             dur="1.5s"
-             fill="remove"/>
+    <!-- fade in when typing starts -->
+    <animate attributeName="opacity" from="0" to="1" begin="type3.begin" dur="0.2s" fill="freeze"/>
+    <!-- fade away -->
+    <animate id="fade3" attributeName="opacity" from="1" to="0" begin="type3.end+1s" dur="1.4s" fill="remove"/>
   </g>
+
 </svg>

@@ -14,7 +14,7 @@
 ---
 
 ## 👨‍💻 About Me
-I'm a final-year Computer Science undergraduate at MS Ramaiah Institute of Technology (CGPA: 9.125). I enjoy building AI-driven systems, backend services, and full-stack projects with a focus on real-world performance, retrieval-augmented generation (RAG), and secure communication systems. I like turning research ideas into production-ready prototypes.
+I'm a pre-final-year Computer Science undergraduate at MS Ramaiah Institute of Technology. I enjoy building AI-driven systems, backend services, and full-stack projects with a focus on real-world performance, retrieval-augmented generation (RAG), and secure communication systems. I like turning research ideas into production-ready prototypes.
 
 ---
 
@@ -47,23 +47,24 @@ I'm a final-year Computer Science undergraduate at MS Ramaiah Institute of Techn
 (Short descriptions — full details & code can go in each project's repo)
 
 - **Adaptive Learning System**  
-  AI-driven personalized learning platform using multi-agent LLM question generation, fuzzy logic, reinforcement learning, and knowledge-graph traversal. Layered architecture with CLI & API interfaces; MongoDB + Redis for persistence and caching. Production-ready performance and detailed complexity analysis. :contentReference[oaicite:0]{index=0}
+  AI-driven personalized learning platform using multi-agent LLM question generation, fuzzy logic, reinforcement learning, and knowledge-graph traversal.
 
 - **VibeAlgo AI**  
-  Platform for algorithm analysis, time-space complexity evaluation, and interactive visualizations. Multi-agent orchestration via Flask API; RAG pipeline (FAISS + Sentence Transformers); Chrome extension + CLI and MongoDB-backed storage for benchmarking and visualizations. :contentReference[oaicite:1]{index=1}
+  Platform for algorithm analysis, time-space complexity evaluation, and interactive visualizations.
 <!--
 - **Email Processing Agent**  
   System to parse `.eml`/`.msg` attachments, extract content, run OCR (Tesseract), produce AI summaries and entity extraction. Built with Flask, T5-based models, vector embeddings and Dockerized deployment; dashboard for results. :contentReference[oaicite:2]{index=2}
 -->
 - **AI-Enhanced Secure Email System**  
-  Educational full-stack email platform implementing SMTP/IMAP/POP3 with TLS/SSL and AES-256 content encryption plus AI-based phishing detection. Next.js frontend + Flask backend + MongoDB, with real-time protocol visualization. :contentReference[oaicite:3]{index=3}
+  Educational full-stack email platform implementing SMTP/IMAP/POP3 with TLS/SSL and AES-256 content encryption plus AI-based phishing detection.
 
 - **Automated Vacation Request System (DMS-AVRS)**  
-  Rule-based scheduling optimizer using graph theory (conflict graphs, graph coloring, MIS) for team coverage and conflict resolution. Planned stack: FastAPI, Next.js, PostgreSQL, Redis. :contentReference[oaicite:4]{index=4}
+  Rule-based scheduling optimizer using graph theory (conflict graphs, graph coloring, MIS) for team coverage and conflict resolution.
 
+<!--
 - **Early/Electronics Projects**  
   *Blind Turn Indicator* (Nov 2019) and *Earthquake Alarm* (Dec 2020) — hardware prototypes aimed at safety & early-warning systems.
-
+-->
 ---
 
 ## 🎓 Education

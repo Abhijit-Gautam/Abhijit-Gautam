@@ -42,9 +42,9 @@ I'm a pre-final-year Computer Science undergraduate at MS Ramaiah Institute of T
 </div>
 
 ---
-
+<!--
 ![GitHub Contribution Snake Dark](https://raw.githubusercontent.com/Abhijit-Gautam/Abhijit-Gautam/output/snake-dark.svg)
-
+-->
 ---
 ## 🚀 Selected Projects
 (Short descriptions — full details & code can go in each project's repo)

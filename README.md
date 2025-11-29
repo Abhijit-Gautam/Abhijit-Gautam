@@ -43,6 +43,9 @@ I'm a pre-final-year Computer Science undergraduate at MS Ramaiah Institute of T
 
 ---
 
+![GitHub Contribution Snake Dark](https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME/output/snake-dark.svg)
+
+---
 ## 🚀 Selected Projects
 (Short descriptions — full details & code can go in each project's repo)
 
